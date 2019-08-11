@@ -1,0 +1,42 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Debug Build",
+            "type": "shell",
+            "command": "node-gyp",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "rebuild",
+                "-j=max",
+                "--debug"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Release Build",
+            "type": "shell",
+            "command": "node-gyp",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "rebuild",
+                "-j=max"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": "$msCompile"
+        },
+    ]
+}

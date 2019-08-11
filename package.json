@@ -1,0 +1,29 @@
+{
+  "author": {
+    "name": "lukechu10"
+  },
+  "dependencies": {
+    "node-addon-api": "^1.7.1",
+    "node-gyp": "^5.0.3",
+    "npm": "^6.10.3"
+  },
+  "description": "Node Addon API Integration",
+  "gypfile": true,
+  "keywords": [
+    "tictactoe",
+    "ultimate tictactoe",
+    "ai"
+  ],
+  "main": "./build/Release/binding.node",
+  "name": "ultimate-tictactoe-ai",
+  "scripts": {
+    "rebuild": "node-gyp rebuild -j max",
+    "rebuild:dev": "node-gyp rebuild -j max --debug",
+    "clean": "node-gyp clean",
+    "build": "node-gyp build -j max",
+    "build:dev": "node-gyp build -j max --debug",
+    "start": "node app.js",
+    "test": "node app.js"
+  },
+  "version": "0.1.0"
+}
