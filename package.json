@@ -25,5 +25,5 @@
     "start": "node app.js",
     "test": "node app.js"
   },
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
