@@ -32,4 +32,7 @@ private:
 	Napi::Value checkSubWin(const Napi::CallbackInfo &info);
 	// Get sub wins array
 	Napi::Value subWins(const Napi::CallbackInfo &info);
+
+	// Get global win
+	Napi::Value checkForWinGlobal(const Napi::CallbackInfo &info);
 };

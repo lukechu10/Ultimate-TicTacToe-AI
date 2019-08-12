@@ -13,7 +13,8 @@ Napi::Object uTicTacToe::Init(Napi::Env env, Napi::Object exports) {
 		InstanceMethod("availibleMoves", &uTicTacToe::availibleMoves),
 		InstanceMethod("applyMove", &uTicTacToe::applyMove),
 		InstanceMethod("checkSubWin", &uTicTacToe::checkSubWin),
-		InstanceMethod("subWins", &uTicTacToe::subWins)
+		InstanceMethod("subWins", &uTicTacToe::subWins),
+		InstanceMethod("checkForWinGlobal", &uTicTacToe::checkForWinGlobal)
 		});
 	
 	
@@ -176,4 +177,11 @@ Napi::Value uTicTacToe::subWins(const Napi::CallbackInfo& info) {
 	}
 
 	return res;
+}
+
+Napi::Value uTicTacToe::checkForWinGlobal(const Napi::CallbackInfo &info) {
+	Napi::Env env = info.Env();
+	auto data = game.checkForWinGlobal();
+
+	return Napi::String::New(env, squareToString(data));
 }

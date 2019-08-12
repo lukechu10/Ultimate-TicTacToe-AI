@@ -207,7 +207,8 @@ Square UltimateTicTacToe::checkForWinGlobal()
 	for (int row = 0; row < 3; row++)
 	{
 		if (subWins[row][0] == subWins[row][1] &&
-			subWins[row][1] == subWins[row][2])
+			subWins[row][1] == subWins[row][2] &&
+			subWins[row][0] != Square::Blank)
 		{
 			return subWins[row][0];
 		}
@@ -217,19 +218,22 @@ Square UltimateTicTacToe::checkForWinGlobal()
 	for (int col = 0; col < 3; col++)
 	{
 		if (subWins[0][col] == subWins[1][col] &&
-			subWins[1][col] == subWins[2][col])
+			subWins[1][col] == subWins[2][col] &&
+			subWins[0][col] != Square::Blank)
 		{
 			return subWins[0][col];
 		}
 	}
 
 	// Checking for Diagonals for X or O victory.
-	if (subWins[0][0] == subWins[1][1] && subWins[1][1] == subWins[2][2])
+	if (subWins[0][0] == subWins[1][1] && subWins[1][1] == subWins[2][2] &&
+		subWins[0][0] != Square::Blank)
 	{
 		return subWins[0][0];
 	}
 
-	if (subWins[0][2] == subWins[1][1] && subWins[1][1] == subWins[2][0])
+	if (subWins[0][2] == subWins[1][1] && subWins[1][1] == subWins[2][0] &&
+		subWins[0][2] != Square::Blank)
 	{
 		return subWins[0][2];
 	}

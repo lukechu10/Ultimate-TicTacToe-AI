@@ -3,5 +3,12 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"files.associations": {
+			"*.gyp": "json",
+			"*.njsproj": "xml",
+			"array": "cpp"
+		}
+	}
 }

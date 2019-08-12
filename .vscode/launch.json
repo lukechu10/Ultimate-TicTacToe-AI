@@ -8,7 +8,8 @@
             "type": "node",
             "request": "launch",
             "name": "Test",
-            "program": "${workspaceFolder}\\app.js"
+            "program": "${workspaceFolder}\\app.js",
+            "console": "internalConsole"
         }
     ]
 }
