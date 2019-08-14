@@ -14,7 +14,7 @@
     "ultimate tictactoe",
     "ai"
   ],
-  "main": "./build/Release/binding.node",
+  "main": "./build/Release/uTicTacToe.node",
   "name": "ultimate-tictactoe-ai",
   "scripts": {
     "rebuild": "node-gyp rebuild -j max",

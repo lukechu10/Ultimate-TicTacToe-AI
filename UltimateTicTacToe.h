@@ -6,15 +6,15 @@
 
 class UltimateTicTacToe {
 	GameBoard data; // Representation of gameboard
-
-	enum Turn : bool {
-		Player1 = true,
-		Payer2
-	};
 public:
 	// Creates a blank game board
 	UltimateTicTacToe();
-	UltimateTicTacToe& applyMove(Move m);
+
+	inline UltimateTicTacToe& applyMove(Move m) {
+		data.setValue(m.row, m.col, m.subRow, m.subCol, m.who);
+		return *this;
+	}
+
 	std::vector<Move> availibleMoves(Square who);
 
 	// sub game board wins
@@ -24,9 +24,57 @@ public:
 	Move getMoveFromInput(Square who);
 
 	// Check for win is sub game board and update
-	void checkSubWin(unsigned row, unsigned col);
+	inline void checkSubWin(unsigned row, unsigned col) {
+		// check if sub game board is full
 
-	void checkForFull(unsigned row, unsigned col);
+#define subBoard data.getSubGameBoard(row, col)
+	// Checking for Rows for X or O victory.
+		for (int subRow = 0; subRow < 3; subRow++) {
+			if (subBoard[subRow][0] == subBoard[subRow][1] &&
+				subBoard[subRow][1] == subBoard[subRow][2] &&
+				subBoard[subRow][0] != Square::Blank) {
+				subWins[row][col] = subBoard[subRow][0];
+				return;
+			}
+		}
+
+		// Checking for Columns for X or O victory.
+		for (int subCol = 0; subCol < 3; subCol++) {
+			if (subBoard[0][subCol] == subBoard[1][subCol] &&
+				subBoard[1][subCol] == subBoard[2][subCol] &&
+				subBoard[0][subCol] != Square::Blank) {
+				subWins[row][col] = subBoard[0][subCol];
+				return;
+			}
+		}
+
+		// Checking for Diagonals for X or O victory.
+		if (subBoard[0][0] == subBoard[1][1] && subBoard[1][1] == subBoard[2][2] &&
+			subBoard[0][0] != Square::Blank) {
+			subWins[row][col] = subBoard[0][0];
+			return;
+		}
+
+		if (subBoard[0][2] == subBoard[1][1] && subBoard[1][1] == subBoard[2][0] &&
+			subBoard[0][2] != Square::Blank) {
+			subWins[row][col] = subBoard[0][2];
+			return;
+		}
+		// no win detected
+#undef subBoard
+	}
+
+	inline void checkForFull(unsigned row, unsigned col) {
+		for (auto& row : data.getSubGameBoard(row, col)) {
+			for (auto& col : row) {
+				if (col == Square::Blank)
+					return; // exit function
+			}
+		}
+		// no more availible moves
+		// set subWins
+		subWins[row][col] = Square::Full;
+	}
 
 	// Check for global win and returns winner
 	Square checkForWinGlobal();
@@ -36,4 +84,17 @@ public:
 
 	// return array representation
 	SubGameBoard<SubGameBoard<Square>> toArray();
+
+
+	int evaluateBasicBoard(SubGameBoard<Square>);
+
+	SubGameBoard<int> generateCoefs();
+
+	// minimax evaluation funtion
+	int evaluate();
+
+	int minimax(bool isMax, int depth, int alpha, int beta);
+
+	// minimax ai
+	Move bestMove(Square who);
 };

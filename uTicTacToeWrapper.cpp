@@ -14,7 +14,8 @@ Napi::Object uTicTacToe::Init(Napi::Env env, Napi::Object exports) {
 		InstanceMethod("applyMove", &uTicTacToe::applyMove),
 		InstanceMethod("checkSubWin", &uTicTacToe::checkSubWin),
 		InstanceMethod("subWins", &uTicTacToe::subWins),
-		InstanceMethod("checkForWinGlobal", &uTicTacToe::checkForWinGlobal)
+		InstanceMethod("checkForWinGlobal", &uTicTacToe::checkForWinGlobal),
+		InstanceMethod("bestMove", &uTicTacToe::bestMove)
 		});
 	
 	
@@ -57,7 +58,6 @@ Napi::Value uTicTacToe::toArray(const Napi::CallbackInfo& info) {
 	// check if number of arguments is 0
 	if (info.Length() != 0) {
 		throw Napi::Error::New(env, "Invalid argument length");
-		//return;
 	}
 
 	auto data = game.toArray(); // data
@@ -184,4 +184,33 @@ Napi::Value uTicTacToe::checkForWinGlobal(const Napi::CallbackInfo &info) {
 	auto data = game.checkForWinGlobal();
 
 	return Napi::String::New(env, squareToString(data));
+}
+
+Napi::Value uTicTacToe::bestMove(const Napi::CallbackInfo &info) {
+	Napi::Env env = info.Env();
+	// parse square
+	auto whoStr = info[0].As<Napi::String>();
+	Square who;
+	// check string argument
+	if ((string)whoStr == "player1")
+		who = Square::Player1;
+	else if ((string)whoStr == "player2")
+		who = Square::Player2;
+	else // invalid argument
+		throw Napi::Error::New(env, "Invalid argument. Must have value of either \"player1\" or \"player2\"");
+	
+	try { // bestMove can throw exception
+		Move data = game.bestMove(who);
+
+		Napi::Object res = Napi::Object::New(env);
+		res.Set("row", data.row);
+		res.Set("col", data.col);
+		res.Set("subRow", data.subRow);
+		res.Set("subCol", data.subCol);
+		res.Set("who", squareToString(data.who));
+		return res;
+	}
+	catch(exception& e) {
+		throw Napi::Error::New(env, e.what());
+	}
 }

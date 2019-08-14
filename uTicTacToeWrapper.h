@@ -35,4 +35,7 @@ private:
 
 	// Get global win
 	Napi::Value checkForWinGlobal(const Napi::CallbackInfo &info);
+
+	// Best Move
+	Napi::Value bestMove(const Napi::CallbackInfo &info);
 };

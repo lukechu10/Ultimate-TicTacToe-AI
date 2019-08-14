@@ -39,6 +39,7 @@
     <Content Include="node-driver.cpp" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="UltimateTicTacToe-minimax.cpp" />
     <Content Include="UltimateTicTacToe.cpp" />
     <Content Include="UltimateTicTacToe.h" />
     <Content Include="uTicTacToeWrapper.cpp" />
