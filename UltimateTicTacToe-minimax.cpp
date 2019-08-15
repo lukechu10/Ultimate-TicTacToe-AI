@@ -131,9 +131,9 @@ int UltimateTicTacToe::evaluate() {
 			if (subWins[row][col] == Square::Blank)
 				val += evaluateBasicBoard(data.getSubGameBoard(row, col)) * coefs[row][col];
 			else if (subWins[row][col] == Square::Player1)
-				val += 1000 * coefs[row][col];
+				val += 100 * coefs[row][col];
 			else 
-				val -= 1000 * coefs[row][col];
+				val -= 100 * coefs[row][col];
 		}
 	}
 
