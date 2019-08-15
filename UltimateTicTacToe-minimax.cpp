@@ -146,10 +146,11 @@ int UltimateTicTacToe::evaluate() {
 int UltimateTicTacToe::minimax(bool isMax, int depth, int alpha, int beta) {
 
 	// end state or depth
-	if (checkForWinGlobal() != Square::Blank) {
-		return isMax ? INT_MAX - 1 : INT_MIN + 1;
+	auto globalWin = checkForWinGlobal();
+	if (globalWin != Square::Blank) {
+		return (globalWin == Square::Player1) ? INT_MAX - 1 : INT_MIN + 1;
 	}
-	if (depth == 5) {
+	if (depth == 6) {
 		return evaluate();
 	}
 
@@ -177,7 +178,7 @@ int UltimateTicTacToe::minimax(bool isMax, int depth, int alpha, int beta) {
 		// undo move
 		move.who = Square::Blank;
 		applyMove(move);
-		//checkSubWin(move.row, move.col);
+		checkSubWin(move.row, move.col);
 		subWins[move.row][move.col] = Square::Blank;
 
 		// Alpha Beta Pruning 
@@ -215,7 +216,7 @@ Move UltimateTicTacToe::bestMove(Square who) {
 			}
 		}
 		else {
-			auto temp = minimax(false, 0, INT_MIN, INT_MAX);
+			auto temp = minimax(true, 0, INT_MIN, INT_MAX);
 			if (bestValue > temp) {
 				bestValue = temp;
 				bestIndex = i;
@@ -227,7 +228,7 @@ Move UltimateTicTacToe::bestMove(Square who) {
 		applyMove(moves[i]);
 		// reset move
 		moves[i].who = who;
-		//checkSubWin(moves[i].row, moves[i].col);
+		checkSubWin(moves[i].row, moves[i].col);
 		subWins[moves[i].row][moves[i].col] = Square::Blank;
 	}
 

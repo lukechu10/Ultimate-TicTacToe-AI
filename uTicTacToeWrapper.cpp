@@ -15,7 +15,8 @@ Napi::Object uTicTacToe::Init(Napi::Env env, Napi::Object exports) {
 		InstanceMethod("checkSubWin", &uTicTacToe::checkSubWin),
 		InstanceMethod("subWins", &uTicTacToe::subWins),
 		InstanceMethod("checkForWinGlobal", &uTicTacToe::checkForWinGlobal),
-		InstanceMethod("bestMove", &uTicTacToe::bestMove)
+		InstanceMethod("bestMove", &uTicTacToe::bestMove),
+		InstanceMethod("evaluate", &uTicTacToe::evaluate)
 		});
 	
 	
@@ -213,4 +214,9 @@ Napi::Value uTicTacToe::bestMove(const Napi::CallbackInfo &info) {
 	catch(exception& e) {
 		throw Napi::Error::New(env, e.what());
 	}
+}
+
+Napi::Value uTicTacToe::evaluate(const Napi::CallbackInfo &info) {
+	Napi::Env env = info.Env();
+	return Napi::Value::From(env, game.evaluate());
 }

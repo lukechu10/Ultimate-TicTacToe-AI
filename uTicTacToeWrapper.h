@@ -38,4 +38,6 @@ private:
 
 	// Best Move
 	Napi::Value bestMove(const Napi::CallbackInfo &info);
+	// Minimax evaluation function
+	Napi::Value evaluate(const Napi::CallbackInfo &info);
 };
