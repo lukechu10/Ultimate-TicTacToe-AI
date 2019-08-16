@@ -12,7 +12,9 @@
   "keywords": [
     "tictactoe",
     "ultimate tictactoe",
-    "ai"
+    "ai",
+    "uttt",
+    "ultimate tic tac toe"
   ],
   "main": "./build/Release/uTicTacToe.node",
   "name": "ultimate-tictactoe-ai",
@@ -25,5 +27,5 @@
     "start": "node app.js",
     "test": "node app.js"
   },
-  "version": "1.0.0"
+  "version": "0.3.0"
 }
