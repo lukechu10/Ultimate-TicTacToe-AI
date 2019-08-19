@@ -3,6 +3,7 @@
     "name": "lukechu10"
   },
   "dependencies": {
+    "@types/node": "^12.7.2",
     "node-addon-api": "^1.7.1",
     "node-gyp": "^5.0.3",
     "npm": "^6.10.3"
@@ -16,7 +17,7 @@
     "uttt",
     "ultimate tic tac toe"
   ],
-  "main": "./build/Release/uTicTacToe.node",
+  "main": "./exports.js",
   "name": "ultimate-tictactoe-ai",
   "scripts": {
     "rebuild": "node-gyp rebuild -j max",

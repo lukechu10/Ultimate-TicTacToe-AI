@@ -7,9 +7,19 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Test",
-            "program": "${workspaceFolder}\\app.js",
+            "name": "Debug JavaScript",
+            "program": "${workspaceFolder}\\tests\\app.js",
             "console": "internalConsole"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "Debug C++",
+            "program": "node",
+            "args": [
+                "${workspaceFolder}\\tests\\app.js"
+            ],
+            "cwd" :"${workspaceRoot}"
         }
     ]
 }
