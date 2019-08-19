@@ -15,7 +15,10 @@
     "ultimate tictactoe",
     "ai",
     "uttt",
-    "ultimate tic tac toe"
+    "ultimate tic tac toe",
+    "minimax",
+    "node-gyp",
+    "native addon"
   ],
   "main": "./exports.js",
   "name": "ultimate-tictactoe-ai",
@@ -28,5 +31,5 @@
     "start": "node app.js",
     "test": "node app.js"
   },
-  "version": "0.3.0"
+  "version": "0.3.1"
 }
