@@ -27,7 +27,17 @@
 					"ExceptionHandling": 1,
 					"Optimization": 2
 				}
-			}
+			},
+			"conditions": [
+				['OS=="linux"',
+					{
+					'CXXFLAGS': [
+						'-std=c++17',
+						'-fexceptions'
+								]
+							}
+				],
+			]
 		}
 	]
 }

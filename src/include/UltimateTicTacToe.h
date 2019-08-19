@@ -66,8 +66,8 @@ public:
     }
 
     inline void checkForFull(unsigned row, unsigned col) {
-        for (auto &row : data.getSubGameBoard(row, col)) {
-            for (auto &col : row) {
+        for (auto &boardRow : data.getSubGameBoard(row, col)) {
+            for (auto &col : boardRow) {
                 if (col == Square::Blank)
                     return; // exit function
             }

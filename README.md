@@ -5,6 +5,7 @@
 
 ![GitHub tag (latest by date)](https://img.shields.io/github/tag-date/lukechu10/Ultimate-TicTacToe-AI?label=latest)
 ![npm](https://img.shields.io/npm/dm/ultimate-tictactoe-ai)
+[![Build Status](https://dev.azure.com/Bloody-Turtles/Ultimate%20TicTacToe%20AI/_apis/build/status/lukechu10.Ultimate-TicTacToe-AI?branchName=master)](https://dev.azure.com/Bloody-Turtles/Ultimate%20TicTacToe%20AI/_build/latest?definitionId=4&branchName=master)
 
 ## Build instructions
 ```cmd
