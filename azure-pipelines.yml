@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: windowsLatestBuild
   displayName: Windows Build
-  pool: windows-latest
+  pool: windows-2019
   steps:
   - task: UsePythonVersion@0
     inputs:
