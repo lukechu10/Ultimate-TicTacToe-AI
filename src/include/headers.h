@@ -4,12 +4,14 @@
 #include <iostream>
 #include <string>
 
-#include <random>
 #include <chrono> // for generating random number seed
+#include <random>
 
 #include <array>
-#include <vector>
 #include <utility>
+#include <vector>
+
+#include <exception>
 
 #ifdef _WIN32
 #include <windows.h> // console color
