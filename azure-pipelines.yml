@@ -9,7 +9,8 @@ trigger:
 jobs:
 - job: windowsLatestBuild
   displayName: Windows Build
-  pool: windows-2019
+  pool: 
+    vmImage: 'windows-latest'
   steps:
   - task: UsePythonVersion@0
     inputs:
@@ -45,5 +46,3 @@ jobs:
       npm install
       npm run build
     displayName: 'npm install and build'
-
-
