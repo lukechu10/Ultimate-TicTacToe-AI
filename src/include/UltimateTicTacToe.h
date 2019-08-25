@@ -12,7 +12,6 @@ public:
 
 	inline UltimateTicTacToe &applyMove(Move m) {
 		data.setValue(m.row, m.col, m.subRow, m.subCol, m.who);
-		checkSubWin(m.row, m.col);
 		return *this;
 	}
 

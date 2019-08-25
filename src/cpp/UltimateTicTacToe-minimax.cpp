@@ -34,9 +34,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int max = (int)count(row.begin(), row.end(), Square::Player1);
 		int min = (int)count(row.begin(), row.end(), Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 3 : min;
+			evaluateVal -= (min == 2) ? 4 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 3 : max;
+			evaluateVal += (max == 2) ? 4 : max;
 	}
 	// evaluate cols
 	for (unsigned col = 0; col < 3; col++) {
@@ -45,9 +45,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int min = (int)countNum(subGameBoard[0][col], subGameBoard[1][col],
 														subGameBoard[2][col], Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 3 : min;
+			evaluateVal -= (min == 2) ? 4 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 3 : max;
+			evaluateVal += (max == 2) ? 4 : max;
 	}
 	// evaluate diaganol
 	{
@@ -56,9 +56,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int min = (int)countNum(subGameBoard[0][0], subGameBoard[1][1],
 														subGameBoard[2][2], Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 3 : min;
+			evaluateVal -= (min == 2) ? 4 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 3 : max;
+			evaluateVal += (max == 2) ? 4 : max;
 	}
 	// evaluate anti-diaganol
 	{
@@ -67,9 +67,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int min = (int)countNum(subGameBoard[0][2], subGameBoard[1][1],
 														subGameBoard[2][0], Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 3 : min;
+			evaluateVal -= (min == 2) ? 4 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 3 : max;
+			evaluateVal += (max == 2) ? 4 : max;
 	}
 	return evaluateVal;
 }
@@ -77,6 +77,7 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
 	SubGameBoard<int> res;
 	array<int, 3> temp;
+	// initiate res to 0
 	temp.fill(0);
 	res.fill(temp);
 	// evaluate rows
@@ -85,16 +86,16 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
 				(int)count(subWins[row].begin(), subWins[row].end(), Square::Player1);
 		int min =
 				(int)count(subWins[row].begin(), subWins[row].end(), Square::Player2);
-		if ((max != 0 && min != 0) || (max == 0 && min == 0)) {
-			res[row][0] += 1;
-			res[row][1] += 1;
-			res[row][2] += 1;
-		} else if (max != 0 && min != 0) {
+		if (max != 0 && min != 0) {
 			// do nothing
-		} else {
-			res[row][0] += (max + min) * 2;
-			res[row][1] += (max + min) * 2;
-			res[row][2] += (max + min) * 2;
+		} else if (max == 0 && min == 0) {
+            res[row][0] += 1;
+            res[row][1] += 1;
+            res[row][2] += 1;
+        } else {
+			res[row][0] += (max + min) * 3;
+			res[row][1] += (max + min) * 3;
+			res[row][2] += (max + min) * 3;
 		}
 	}
 	// evaluate cols
@@ -103,16 +104,16 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
 														Square::Player1);
 		int min = (int)countNum(subWins[0][col], subWins[1][col], subWins[2][col],
 														Square::Player2);
-		if ((max != 0 && min != 0) || (max == 0 && min == 0)) {
-			res[0][col] += 1;
-			res[1][col] += 1;
-			res[2][col] += 1;
-		} else if (max != 0 && min != 0) {
+		if (max != 0 && min != 0) {
 			// do nothing
-		} else {
-			res[0][col] += (max + min) * 2;
-			res[1][col] += (max + min) * 2;
-			res[2][col] += (max + min) * 2;
+		} else if (max == 0 && min == 0) {
+            res[0][col] += 1;
+            res[1][col] += 1;
+            res[2][col] += 1;
+        } else {
+			res[0][col] += (max + min) * 3;
+			res[1][col] += (max + min) * 3;
+			res[2][col] += (max + min) * 3;
 		}
 	}
 	// evaluate diaganol
@@ -121,17 +122,17 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
 														Square::Player1);
 		int min = (int)countNum(subWins[0][0], subWins[1][1], subWins[2][2],
 														Square::Player2);
-		if ((max != 0 && min != 0) || (max == 0 && min == 0)) {
-			res[0][0] += 1;
-			res[1][1] += 1;
-			res[2][2] += 1;
-		} else if (max != 0 && min != 0) {
-			// do nothing
-		} else {
-			res[0][0] += (max + min) * 2;
-			res[1][1] += (max + min) * 2;
-			res[2][2] += (max + min) * 2;
-		}
+		if (max != 0 && min != 0) {
+			
+		} else if (max == 0 && min == 0) {
+            res[0][0] += 1;
+            res[1][1] += 1;
+            res[2][2] += 1;
+        } else {
+			res[0][0] += (max + min) * 3;
+			res[1][1] += (max + min) * 3;
+            res[2][2] += (max + min) * 3;
+        }
 	}
 	// evaluate anti-diaganol
 	{
@@ -139,16 +140,16 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
 														Square::Player1);
 		int min = (int)countNum(subWins[0][2], subWins[1][1], subWins[2][0],
 														Square::Player2);
-		if (max == 0 && min == 0) {
-			res[0][2] += 1;
-			res[1][1] += 1;
-			res[2][0] += 1;
-		} else if (max != 0 && min != 0) {
+		if (max != 0 && min != 0) {
 			// do nothing
-		} else {
-			res[0][2] += (max + min) * 2;
-			res[1][1] += (max + min) * 2;
-			res[2][0] += (max + min) * 2;
+		} else if (max == 0 && min == 0) {
+            res[0][2] += 1;
+            res[1][1] += 1;
+            res[2][0] += 1;
+        } else {
+			res[0][2] += (max + min) * 3;
+			res[1][1] += (max + min) * 3;
+			res[2][0] += (max + min) * 3;
 		}
 	}
 	return res;
@@ -166,9 +167,9 @@ int UltimateTicTacToe::evaluate() {
 				val += evaluateBasicBoard(data.getSubGameBoard(row, col)) *
 							 coefs[row][col];
 			else if (subWins[row][col] == Square::Player1)
-				val += 100 * coefs[row][col];
+				val += 50 * coefs[row][col];
 			else
-				val -= 100 * coefs[row][col];
+				val -= 50 * coefs[row][col];
 		}
 	}
 
@@ -185,7 +186,7 @@ int UltimateTicTacToe::minimax(bool isMax, int depth, int alpha, int beta) {
 	if (globalWin != Square::Blank) {
 		return (globalWin == Square::Player1) ? (INT_MAX - 1) : (INT_MIN + 1);
 	}
-	if (depth == 6) {
+	if (depth == 8) {
 		return evaluate();
 	}
 
@@ -200,20 +201,24 @@ int UltimateTicTacToe::minimax(bool isMax, int depth, int alpha, int beta) {
 		applyMove(move);
 		// update subWins
 		checkForFull(move.row, move.col);
+        checkSubWin(move.row, move.col);
 
-		if (isMax) {
-			bestValue = max(bestValue, minimax(false, depth + 1, alpha, beta));
-			alpha = max(alpha, bestValue);
+        if (isMax) {
+            auto value = minimax(false, depth + 1, alpha, beta); // cache result
+            bestValue = max(bestValue, value);
+            alpha = max(alpha, bestValue);
 		} else {
-			bestValue = min(bestValue, minimax(true, depth + 1, alpha, beta));
-			beta = min(beta, bestValue);
+			// not max
+            auto value = minimax(true, depth + 1, alpha, beta); // cache result
+            bestValue = min(bestValue, value);
+            beta = min(beta, bestValue);
 		}
 
 		// undo move
 		move.who = Square::Blank;
 		applyMove(move);
-		checkForFull(move.row, move.col);
-		subWins[move.row][move.col] = Square::Blank;
+		// checkForFull(move.row, move.col);
+		subWins[move.row][move.col] = Square::Blank; // if not blank before minimax, node would be a leaf node
 
 		// Alpha Beta Pruning
 		if (beta <= alpha)
@@ -251,8 +256,9 @@ Move UltimateTicTacToe::bestMove(Square who) {
 		applyMove(moves[i]);
 		// update subWins
 		checkForFull(moves[i].row, moves[i].col);
+        checkSubWin(moves[i].row, moves[i].col);
 
-		if (who == Square::Player1) {
+        if (who == Square::Player1) {
 			auto temp = minimax(false, 0, INT_MIN, INT_MAX);
 			if (bestValue < temp) {
 				bestValue = temp;
@@ -275,7 +281,6 @@ Move UltimateTicTacToe::bestMove(Square who) {
 		moves[i].who = who;
 		// checkSubWin(moves[i].row, moves[i].col);
 		subWins[moves[i].row][moves[i].col] = Square::Blank;
-		checkForFull(moves[i].row, moves[i].col);
 
 		// Alpha Beta Pruning
 		if (beta <= alpha)
