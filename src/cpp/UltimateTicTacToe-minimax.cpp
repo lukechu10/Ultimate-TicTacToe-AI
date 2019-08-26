@@ -34,9 +34,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int max = (int)count(row.begin(), row.end(), Square::Player1);
 		int min = (int)count(row.begin(), row.end(), Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 4 : min;
+			evaluateVal -= (min == 2) ? 5 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 4 : max;
+			evaluateVal += (max == 2) ? 5 : max;
 	}
 	// evaluate cols
 	for (unsigned col = 0; col < 3; col++) {
@@ -45,9 +45,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int min = (int)countNum(subGameBoard[0][col], subGameBoard[1][col],
 														subGameBoard[2][col], Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 4 : min;
+			evaluateVal -= (min == 2) ? 5 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 4 : max;
+			evaluateVal += (max == 2) ? 5 : max;
 	}
 	// evaluate diaganol
 	{
@@ -56,9 +56,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int min = (int)countNum(subGameBoard[0][0], subGameBoard[1][1],
 														subGameBoard[2][2], Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 4 : min;
+			evaluateVal -= (min == 2) ? 5 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 4 : max;
+			evaluateVal += (max == 2) ? 5 : max;
 	}
 	// evaluate anti-diaganol
 	{
@@ -67,9 +67,9 @@ int UltimateTicTacToe::evaluateBasicBoard(SubGameBoard<Square> subGameBoard) {
 		int min = (int)countNum(subGameBoard[0][2], subGameBoard[1][1],
 														subGameBoard[2][0], Square::Player2);
 		if (max == 0)
-			evaluateVal -= (min == 2) ? 4 : min;
+			evaluateVal -= (min == 2) ? 5 : min;
 		else if (min == 0)
-			evaluateVal += (max == 2) ? 4 : max;
+			evaluateVal += (max == 2) ? 5 : max;
 	}
 	return evaluateVal;
 }
@@ -259,14 +259,14 @@ Move UltimateTicTacToe::bestMove(Square who) {
         checkSubWin(moves[i].row, moves[i].col);
 
         if (who == Square::Player1) {
-			auto temp = minimax(false, 0, INT_MIN, INT_MAX);
+			auto temp = minimax(false, 0, alpha, beta);
 			if (bestValue < temp) {
 				bestValue = temp;
 				bestIndex = i;
 				alpha = max(alpha, bestValue);
 			}
 		} else {
-			auto temp = minimax(true, 0, INT_MIN, INT_MAX);
+			auto temp = minimax(true, 0, alpha, beta);
 			if (bestValue > temp) {
 				bestValue = temp;
 				bestIndex = i;
