@@ -92,10 +92,10 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
             res[row][0] += 1;
             res[row][1] += 1;
             res[row][2] += 1;
-        } else {
-			res[row][0] += (max + min) * 3;
-			res[row][1] += (max + min) * 3;
-			res[row][2] += (max + min) * 3;
+        } else { // min or max has to be 2 because 3 is win
+            res[row][0] += 6;
+			res[row][1] += 6;
+			res[row][2] += 6;
 		}
 	}
 	// evaluate cols
@@ -110,10 +110,10 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
             res[0][col] += 1;
             res[1][col] += 1;
             res[2][col] += 1;
-        } else {
-			res[0][col] += (max + min) * 3;
-			res[1][col] += (max + min) * 3;
-			res[2][col] += (max + min) * 3;
+        } else { // min or max has to be 2 because 3 is win
+			res[0][col] += 6;
+			res[1][col] += 6;
+			res[2][col] += 6;
 		}
 	}
 	// evaluate diaganol
@@ -128,10 +128,10 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
             res[0][0] += 1;
             res[1][1] += 1;
             res[2][2] += 1;
-        } else {
-			res[0][0] += (max + min) * 3;
-			res[1][1] += (max + min) * 3;
-            res[2][2] += (max + min) * 3;
+        } else { // min or max has to be 2 because 3 is win
+            res[0][0] += 6;
+			res[1][1] += 6;
+            res[2][2] += 6;
         }
 	}
 	// evaluate anti-diaganol
@@ -146,10 +146,10 @@ SubGameBoard<int> UltimateTicTacToe::generateCoefs() {
             res[0][2] += 1;
             res[1][1] += 1;
             res[2][0] += 1;
-        } else {
-			res[0][2] += (max + min) * 3;
-			res[1][1] += (max + min) * 3;
-			res[2][0] += (max + min) * 3;
+        } else { // min or max has to be 2 because 3 is win
+            res[0][2] += 6;
+			res[1][1] += 6;
+			res[2][0] += 6;
 		}
 	}
 	return res;
