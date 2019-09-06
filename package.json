@@ -4,8 +4,7 @@
   },
   "dependencies": {
     "node-addon-api": "^1.7.1",
-    "node-gyp": "^5.0.3",
-    "npm": "^6.10.3"
+    "node-gyp": "^5.0.3"
   },
   "description": "Node Addon API Integration",
   "gypfile": true,
@@ -30,5 +29,5 @@
     "start": "node app.js",
     "test": "node app.js"
   },
-  "version": "0.3.1"
+  "version": "0.3.2"
 }

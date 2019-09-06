@@ -10,7 +10,7 @@
                 "<(cpp_base)UltimateTicTacToe.cpp",
                 "<(cpp_base)UltimateTicTacToe-minimax.cpp",
                 "<(cpp_base)uTicTacToeWrapper.cpp",
-                "<(cpp_base)MoveWrapper.cpp",
+                "<(cpp_base)MoveWrapper.cpp"
             ],
             "include_dirs": [
                 "<!@(node -p \"require('node-addon-api').include\")",

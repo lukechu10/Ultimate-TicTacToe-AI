@@ -31,8 +31,6 @@ console.timeEnd("minimax")
 //console.log("Finished");
 */
 test.applyMove(0, 0, 2, 2, "player1")
-console.log("evaluate before", test.evaluate())
 var move = test.bestMove("player2");
 console.log(move);
-console.log("evaluate after", test.evaluate())
 // test.applyMove(move);
