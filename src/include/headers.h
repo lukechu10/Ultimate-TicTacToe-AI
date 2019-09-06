@@ -13,6 +13,7 @@
 
 #include <exception>
 
+#include <algorithm>
 #include <climits>
 
 #ifdef _WIN32
