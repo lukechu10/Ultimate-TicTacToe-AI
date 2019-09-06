@@ -28,9 +28,8 @@
                     "Optimization": 2
                 }
             },
-            "OTHER_CFLAGS": [
-                "-fexceptions"
-            ]
+            'cflags': ['-fexceptions'],
+            'cflags_cc': ['-fexceptions']
         }
     ]
 }
