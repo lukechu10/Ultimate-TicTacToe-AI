@@ -31,8 +31,8 @@
             "OTHER_CFLAGS": [
                 "-fexceptions"
             ],
-            [
-                "OS=='mac'", 
+            'conditions': [
+                ["OS=='mac'", 
                 {
                     "OTHER_CPLUSPLUSFLAGS" : [ "-std=c++17", "-stdlib=libc++" ],
                     "OTHER_LDFLAGS": [ "-stdlib=libc++" ],
@@ -42,7 +42,7 @@
                         "MACOSX_DEPLOYMENT_TARGET": "10.12",
                         "CLANG_CXX_LANGUAGE_STANDARD": "c++11"
                     }
-                }
+                }]
             ]
         }
     ]
