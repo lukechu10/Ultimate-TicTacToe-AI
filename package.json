@@ -1,33 +1,33 @@
 {
-  "author": {
-    "name": "lukechu10"
-  },
-  "dependencies": {
-    "node-addon-api": "^1.7.1",
-    "node-gyp": "^5.0.3"
-  },
-  "description": "Node Addon API Integration",
-  "gypfile": true,
-  "keywords": [
-    "tictactoe",
-    "ultimate tictactoe",
-    "ai",
-    "uttt",
-    "ultimate tic tac toe",
-    "minimax",
-    "node-gyp",
-    "native addon"
-  ],
-  "main": "./exports.js",
-  "name": "ultimate-tictactoe-ai",
-  "scripts": {
-    "rebuild": "node-gyp rebuild -j max",
-    "rebuild:dev": "node-gyp rebuild -j max --debug",
-    "clean": "node-gyp clean",
-    "build": "node-gyp build -j max",
-    "build:dev": "node-gyp build -j max --debug",
-    "start": "node app.js",
-    "test": "node app.js"
-  },
-  "version": "0.3.2"
+	"author": {
+		"name": "lukechu10"
+	},
+	"dependencies": {
+		"node-addon-api": "^1.7.1",
+		"node-gyp": "^5.0.3"
+	},
+	"description": "Node Addon API Integration",
+	"gypfile": true,
+	"keywords": [
+		"tictactoe",
+		"ultimate tictactoe",
+		"ai",
+		"uttt",
+		"ultimate tic tac toe",
+		"minimax",
+		"node-gyp",
+		"native addon"
+	],
+	"main": "./exports.js",
+	"name": "ultimate-tictactoe-ai",
+	"scripts": {
+		"rebuild": "node-gyp rebuild -j max",
+		"rebuild:dev": "node-gyp rebuild -j max --debug",
+		"clean": "node-gyp clean",
+		"build": "node-gyp build -j max",
+		"build:dev": "node-gyp build -j max --debug",
+		"start": "node app.js",
+		"test": "node tests/app.js"
+	},
+	"version": "0.4.0"
 }

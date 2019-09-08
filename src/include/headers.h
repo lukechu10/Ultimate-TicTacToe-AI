@@ -13,6 +13,9 @@
 
 #include <exception>
 
+#include <algorithm>
+#include <climits>
+
 #ifdef _WIN32
 #include <windows.h> // console color
 #endif
