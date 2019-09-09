@@ -22,22 +22,31 @@
             "defines": [
                 "NAPI_CPP_EXCEPTIONS"
             ],
-            "msvs_settings": {
-                "VCCLCompilerTool": {
-                    "ExceptionHandling": 1,
-                    "Optimization": 2
-                }
-            },
-            "OTHER_CFLAGS": [
-                "-fexceptions"
-            ],
             'conditions': [
-                ["OS=='mac'", 
-                {
-                    "OTHER_LDFLAGS": [ "-stdlib=libc++" ],
+                ["OS=='mac'", {
+                    "OTHER_LDFLAGS": ["-stdlib=libc++"],
                     "xcode_settings": {
                         "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
                         "GCC_ENABLE_CPP_RTTI": "YES"
+                    }
+                }],
+                ["OS=='linux'", {
+                    "OTHER_CFLAGS": [
+                        "-fexceptions"
+                    ],
+                    "cflags": [
+                        "-fexceptions"
+                    ],
+                    "cflags_cc": [
+                        "-fexceptions"
+                    ]
+                }],
+                ["OS=='windows'", {
+                    "msvs_settings": {
+                        "VCCLCompilerTool": {
+                            "ExceptionHandling": 1,
+                            "Optimization": 2
+                        }
                     }
                 }]
             ]
