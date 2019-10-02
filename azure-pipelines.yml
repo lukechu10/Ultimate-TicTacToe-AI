@@ -23,7 +23,7 @@ jobs:
     displayName: 'Install Node.js'
 
   - script: |
-      npm install
+      npm install &&
       npm run build
     displayName: 'npm install and build'
 
@@ -45,7 +45,7 @@ jobs:
     displayName: 'Install Node.js'
 
   - script: |
-      npm install
+      npm install &&
       npm run build
     displayName: 'npm install and build'
 
@@ -65,6 +65,6 @@ jobs:
     displayName: 'Install Node.js'
 
   - script: |
-      npm install
+      npm install &&
       npm run build
     displayName: 'npm install and build'
