@@ -27,7 +27,8 @@
 		"build": "node-gyp build -j max",
 		"build:dev": "node-gyp build -j max --debug",
 		"start": "node app.js",
-		"test": "node tests/app.js"
+		"test": "node tests/app.js",
+		"install": "node-gyp rebuild -j max"
 	},
 	"version": "0.4.2"
 }
