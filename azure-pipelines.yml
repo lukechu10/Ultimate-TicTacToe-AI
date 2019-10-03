@@ -4,71 +4,65 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  - master
 
 jobs:
-- job: windowsLatestBuild
-  displayName: Windows Build
-  pool: 
-    vmImage: 'windows-latest'
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '2.x'
-      addToPath: true
-      architecture: 'x64'
-    displayName: Download Python
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
-  - script: npm install -g node-gyp@latest
-    displayName: Install node-gyp
-  - script: |
-      npm install node-addon-api
-    displayName: 'npm install'
-  - script: |
-      node-gyp rebuild -j max
-    displayName: 'Build binaries'
+  - job: windowsLatestBuild
+    displayName: Windows Build
+    pool:
+      vmImage: "windows-latest"
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "2.x"
+          addToPath: true
+          architecture: "x64"
+        displayName: Download Python
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
+      - script: |
+          npm install
+        displayName: "Install npm dependencies and build"
 
+  - job: ubuntuLatestBuild
+    displayName: Ubuntu Build
+    pool:
+      vmImage: "ubuntu-latest"
 
-- job: ubuntuLatestBuild
-  displayName: Ubuntu Build
-  pool:
-    vmImage: 'ubuntu-latest'
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "2.x"
+          addToPath: true
+          architecture: "x64"
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
 
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '2.x'
-      addToPath: true
-      architecture: 'x64'
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
+      - script: |
+          npm install &&
+          npm run build
+        displayName: "npm install and build"
 
-  - script: |
-      npm install &&
-      npm run build
-    displayName: 'npm install and build'
+  - job: macosLatestBuild
+    displayName: MacOS Build
+    pool:
+      vmImage: "macOS-latest"
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "2.x"
+          addToPath: true
+          architecture: "x64"
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
 
-- job: macosLatestBuild
-  displayName: MacOS Build
-  pool: 
-    vmImage: 'macOS-latest'
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '2.x'
-      addToPath: true
-      architecture: 'x64'
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
-
-  - script: |
-      npm install &&
-      npm run build
-    displayName: 'npm install and build'
+      - script: |
+          npm install &&
+          npm run build
+        displayName: "npm install and build"
