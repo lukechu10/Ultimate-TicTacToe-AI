@@ -6,7 +6,7 @@
         {
             "label": "Debug Build",
             "type": "shell",
-            "command": "node-gyp",
+            "command": "npx node-gyp",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -24,7 +24,7 @@
         {
             "label": "Release Build",
             "type": "shell",
-            "command": "node-gyp",
+            "command": "npx node-gyp",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
