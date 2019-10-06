@@ -48,7 +48,7 @@ public:
 		}
 	};
 	// Return sub GameBoard
-	const SubGameBoard<Square>& getSubGameBoard(unsigned row, unsigned col) const { return data[row][col]; }
+	const inline SubGameBoard<Square>& getSubGameBoard(unsigned row, unsigned col) const { return data[row][col]; }
 
 	// Set value of a sub GameBoard
 	void setSubGameBoard(unsigned row, unsigned col, SubGameBoard<Square> value) { data[row][col] = value; }
