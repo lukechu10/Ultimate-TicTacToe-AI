@@ -4,7 +4,7 @@
 	},
 	"dependencies": {
 		"node-addon-api": "^1.7.1",
-		"node-gyp": "^5.0.4"
+		"node-gyp": "^5.1.0"
 	},
 	"description": "Node Addon API Integration",
 	"gypfile": true,
